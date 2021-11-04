@@ -13,12 +13,13 @@ type PropsType = {
     removeTask: (id: string) => void
     changeFilter: (value: FilterValuesType) => void
     addTask: (title: string) => void
+    changeStatus: (id: string, isDone: boolean) => void
 }
 
 export const TodoList = (props: PropsType) => {
     const [title, setTitle] = useState('')
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+    const onValueChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setTitle(e.currentTarget.value)
     }
 
@@ -52,7 +53,7 @@ export const TodoList = (props: PropsType) => {
             <div>
                 <input
                     value={title}
-                    onChange={onChangeHandler}
+                    onChange={onValueChangeHandler}
                     onKeyPress={onKeyPressHandler}
                 />
                 <button onClick={addTaskHandler}>+</button>
@@ -60,13 +61,22 @@ export const TodoList = (props: PropsType) => {
             <ul>
                 {
                     props.tasks.map(t => {
-                        const onClickHandler = () => {
+                        const onRemoveClickHandler = () => {
                             props.removeTask(t.id)
                         }
+
+                        const onCheckedChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                            props.changeStatus(t.id, e.currentTarget.checked)
+                        }
+
                         return <li key={t.id}>
-                            <input type="checkbox" checked={t.isDone}/>
+                            <input
+                                type="checkbox"
+                                checked={t.isDone}
+                                onChange={onCheckedChangeHandler}
+                            />
                             <span>{t.title}</span>
-                            <button onClick={onClickHandler}>x</button>
+                            <button onClick={onRemoveClickHandler}>x</button>
                         </li>
                     } )
                 }

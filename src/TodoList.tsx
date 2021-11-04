@@ -24,8 +24,10 @@ export const TodoList = (props: PropsType) => {
     }
 
     const addTaskHandler = () => {
-        props.addTask(title)
-        setTitle('')
+        if(title.trim() !== ''){
+            props.addTask(title)
+            setTitle('')
+        }
     }
 
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {

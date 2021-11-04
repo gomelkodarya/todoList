@@ -1,6 +1,5 @@
 import React, {KeyboardEvent, ChangeEvent, useState} from "react";
 import {FilterValuesType} from "./App";
-import {strict} from "assert";
 
 export type TaskType = {
     id: string

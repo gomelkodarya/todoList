@@ -1,8 +1,7 @@
 import React, {ChangeEvent, KeyboardEvent, useState} from "react";
 
 type AddItemFormPropsType = {
-    id: string
-    addTask: (title: string, todoListId: string) => void
+    addItem: (title: string) => void
 }
 
 export const AddItemForm = (props: AddItemFormPropsType) => {
@@ -13,9 +12,9 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
         setTitle(e.currentTarget.value)
     }
 
-    const addTaskHandler = () => {
+    const addItemHandler = () => {
         if(title.trim() !== ''){
-            props.addTask(title, props.id)
+            props.addItem(title)
             setTitle('')
         } else {
             setError('Field is required')
@@ -25,7 +24,7 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
     const onKeyPressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
         setError(null)
         if(e.charCode === 13) {
-            addTaskHandler()
+            addItemHandler()
             setTitle('')
         }
     }
@@ -38,7 +37,7 @@ export const AddItemForm = (props: AddItemFormPropsType) => {
                 onKeyPress={onKeyPressHandler}
                 className={error ? 'error' : ''}
             />
-            <button onClick={addTaskHandler}>+</button>
+            <button onClick={addItemHandler}>+</button>
             {error && <div className={'error-message'}>{error}</div>}
         </div>
     )

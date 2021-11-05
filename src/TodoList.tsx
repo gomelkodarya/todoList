@@ -22,6 +22,9 @@ type PropsType = {
 }
 
 export const TodoList = (props: PropsType) => {
+    const addTask = (title: string) => {
+        props.addTask(title, props.id)
+    }
 
     const onAllClickHandler = () => {
         props.changeFilter('all', props.id)
@@ -46,8 +49,7 @@ export const TodoList = (props: PropsType) => {
                 <button onClick={removeTodoListHandler}>x</button>
             </h3>
 
-            <AddItemForm id={props.id}
-                         addTask={props.addTask}/>
+            <AddItemForm addItem={addTask}/>
 
             <ul>
                 {

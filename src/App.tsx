@@ -69,7 +69,6 @@ export const App = () => {
         // let task = tasks[todoListId].find(t => t.id === id)
         // if(task) {
         //     task.isDone = isDone
-        //     tasks[todoListId] = [task, ...tasks[todoListId]]
         //     setTasks({...tasks})
         // }
         setTasks({...tasks,
@@ -84,6 +83,21 @@ export const App = () => {
         let newTodoList: TodoListType = {id: v1(), title: title, filter: 'all'}
         setTodoLists([newTodoList, ...todoLists])
         setTasks({...tasks, [newTodoList.id]:[]})
+    }
+
+    const onChangeTitle = (id: string, value: string, todoListId: string) => {
+        // let task = tasks[todoListId].find(t => t.id === id)
+        // if(task) {
+        //     task.title = value
+        //     setTasks({...tasks})
+        // }
+
+        setTasks({...tasks,
+            [todoListId]: tasks[todoListId].map(m => m.id === id ? {
+                ...m,
+                title: value
+            } : m)
+        })
     }
 
     return (
@@ -110,6 +124,7 @@ export const App = () => {
                                      changeStatus={changeStatus}
                                      filter={tl.filter}
                                      removeTodoList={removeTodoList}
+                                     onChangeTitle={onChangeTitle}
                     />
                 })
             }

@@ -85,7 +85,7 @@ export const App = () => {
         setTasks({...tasks, [newTodoList.id]:[]})
     }
 
-    const onChangeTitle = (id: string, value: string, todoListId: string) => {
+    const onChangeTaskTitle = (id: string, value: string, todoListId: string) => {
         // let task = tasks[todoListId].find(t => t.id === id)
         // if(task) {
         //     task.title = value
@@ -124,7 +124,7 @@ export const App = () => {
                                      changeStatus={changeStatus}
                                      filter={tl.filter}
                                      removeTodoList={removeTodoList}
-                                     onChangeTitle={onChangeTitle}
+                                     onChangeTaskTitle={onChangeTaskTitle}
                     />
                 })
             }

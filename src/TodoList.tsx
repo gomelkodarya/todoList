@@ -20,7 +20,7 @@ type PropsType = {
     changeStatus: (id: string, isDone: boolean, totoListId:string) => void
     filter: FilterValuesType
     removeTodoList: (todoListId: string) => void
-    onChangeTitle: (id: string, value: string, todoListId: string) => void
+    onChangeTaskTitle: (id: string, value: string, todoListId: string) => void
 }
 
 export const TodoList = (props: PropsType) => {
@@ -65,7 +65,7 @@ export const TodoList = (props: PropsType) => {
                         }
 
                         const onChangeTitleHandler = (value: string) => {
-                            props.onChangeTitle(t.id, value, props.id)
+                            props.onChangeTaskTitle(t.id, value, props.id)
                         }
 
                         return <li key={t.id} className={t.isDone ? 'is-done' : ''}>

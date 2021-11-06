@@ -79,6 +79,14 @@ export const App = () => {
         })
     }
 
+    const onChangeTodoListTitle = (value: string, todoListId: string) => {
+        let todoList = todoLists.find(tl => tl.id === todoListId)
+        if(todoList) {
+            todoList.title = value
+            setTodoLists([...todoLists])
+        }
+    }
+
     const addTodoList = (title: string) => {
         let newTodoList: TodoListType = {id: v1(), title: title, filter: 'all'}
         setTodoLists([newTodoList, ...todoLists])
@@ -125,6 +133,7 @@ export const App = () => {
                                      filter={tl.filter}
                                      removeTodoList={removeTodoList}
                                      onChangeTaskTitle={onChangeTaskTitle}
+                                     onChangeTodoListTitle={onChangeTodoListTitle}
                     />
                 })
             }

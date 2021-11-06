@@ -86,9 +86,6 @@ export const App = () => {
         setTasks({...tasks, [newTodoList.id]:[]})
     }
 
-
-
-
     return (
         <div className="App">
             <AddItemForm addItem={addTodoList}/>

@@ -1,7 +1,8 @@
-import React, {KeyboardEvent, ChangeEvent, useState} from "react";
+import React, {ChangeEvent} from "react";
 import {FilterValuesType} from "./App";
 import './App.css'
 import {AddItemForm} from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 export type TaskType = {
     id: string
@@ -68,7 +69,8 @@ export const TodoList = (props: PropsType) => {
                                 checked={t.isDone}
                                 onChange={onCheckedChangeHandler}
                             />
-                            <span>{t.title}</span>
+                            <EditableSpan title={t.title}/>
+
                             <button onClick={onRemoveClickHandler}>x</button>
                         </li>
                     } )
@@ -77,7 +79,7 @@ export const TodoList = (props: PropsType) => {
             <div>
                 <button className={props.filter === 'all' ? 'active-filter' : ''} onClick={onAllClickHandler}>All</button>
                 <button className={props.filter === 'active' ? 'active-filter' : ''} onClick={onActiveClickHandler}>Active</button>
-                <button className={props.filter === 'completed' ? 'active-filter' : ''}onClick={onCompletedClickHandler}>Completed</button>
+                <button className={props.filter === 'completed' ? 'active-filter' : ''} onClick={onCompletedClickHandler}>Completed</button>
             </div>
         </div>
     )
